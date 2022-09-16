@@ -61,6 +61,9 @@ const App = () => {
 
   return (
     <Container>
+      <div className="text-center m-3">
+        <h1>System Logs</h1>
+      </div>
       <AddLogItem addItem={addItem} />
 
       {alert.show && (
