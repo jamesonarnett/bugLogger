@@ -22,7 +22,9 @@
   },
   "dependencies": {
     "bootstrap": "^5.2.1",
+    "dotenv": "^16.0.2",
     "moment": "^2.29.4",
+    "mongoose": "^6.6.1",
     "react": "^16.13.1",
     "react-bootstrap": "^2.5.0",
     "react-dom": "^16.13.1",

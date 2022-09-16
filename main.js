@@ -1,6 +1,12 @@
 const path = require("path");
 const url = require("url");
+const env = require("dotenv").config();
 const { app, BrowserWindow } = require("electron");
+const Log = require("./models/Log");
+const connectDb = require("./config/db.js");
+
+//Connect to DB
+connectDb();
 
 let mainWindow;
 
