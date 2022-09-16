@@ -71,6 +71,7 @@ const createMainWindow = () => {
   mainWindow.on("closed", () => (mainWindow = null));
 };
 
+//sendLogs to App.js onStart && onUpdate
 const sendLogs = async () => {
   try {
     const logs = await Log.find().sort({ created: 1 });
@@ -79,6 +80,26 @@ const sendLogs = async () => {
     console.log(error);
   }
 };
+
+//create new log from App.js form
+ipcMain.on("logs:add", async (e, item) => {
+  try {
+    await Log.create(item);
+    sendLogs();
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+//delete log from App.js
+ipcMain.on("logs:delete", async (e, id) => {
+  try {
+    await Log.findByIdAndDelete({ _id: id });
+    sendLogs();
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 app.on("ready", createMainWindow);
 ipcMain.on("logs:load", sendLogs);

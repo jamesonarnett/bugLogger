@@ -13,7 +13,6 @@ const App = () => {
     message: "",
     variant: "success",
   });
-
   const [logs, setLogs] = useState([]);
 
   useEffect(() => {
@@ -30,14 +29,19 @@ const App = () => {
       return false;
     }
 
-    item._id = Math.floor(Math.random() * 90000) + 10000;
-    item.created = new Date().toString();
-    setLogs([...logs, item]);
+    // item._id = Math.floor(Math.random() * 90000) + 10000;
+    // item.created = new Date().toString();
+    // setLogs([...logs, item]);
+
+    ipcRenderer.send("logs:add", item);
+
     showAlert("Log added");
   };
 
   const deleteItem = (_id) => {
-    setLogs(logs.filter((log) => log._id !== _id));
+    // setLogs(logs.filter((log) => log._id !== _id));
+
+    ipcRenderer.send("logs:delete", _id);
     showAlert("Log deleted");
   };
 
